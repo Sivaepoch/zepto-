@@ -3,7 +3,7 @@
 
 既然是反向分析,那我们先看看这句话的代码;
 
-	`if (!selector) return zepto.Z()`
+`if (!selector) return zepto.Z()`
     
  这里的返回值为`zepto.Z();`那我们继续往上找zepto.Z()函数
 
@@ -38,7 +38,8 @@ else if (typeof selector == 'string') {
     if (selector[0] == '<' && fragmentRE.test(selector))
           dom = zepto.fragment(selector, RegExp.$1, context), selector = null
     ```
-    这里有两个知识点:
+    这里有两个知识点:  
+    
     (1) `fragmentRE.test(selector)`
     	
         这里的fragmentRE是Zepto函数在之前定义的一段正则;
@@ -46,10 +47,12 @@ else if (typeof selector == 'string') {
         //<div>erfwef</div>  取出<div>
         fragmentRE = /^\s*<(\w+|!)[^>]*>/,
         ```
+     
     (2) `zepto.fragment(selector, RegExp.$1, context)`
-    	*  RegExp.$1
-    	 	 RegExp.$1为RegExp的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串;
-             例子:
+    	*  `RegExp.$1`
+    	 	 `RegExp.$1`为`RegExp`的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串;
+             例子:  
+             
         ```javascript
             var r= /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
             r.exec('1985-10-15');
