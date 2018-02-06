@@ -65,7 +65,7 @@ else if (typeof selector == 'string') {
                 s3=RegExp.$3;
                 alert(s1+" "+s2+" "+s3)//结果为1985 10 15
             ```
-            * zepto.fragment()函数
+            * `zepto.fragment()`函数
 
             ```javascript
             //对应上面的代码,这里第一个参数是selector,就是我们在写代码时的$('xxx')中的xxx,
@@ -112,8 +112,7 @@ else if (typeof selector == 'string') {
                   //<p><span></span></p>返回[p,span]
                   return dom
         		}
-                ```  
-
+            ```  
     		*   ######  singleTagRE		
     ![QQ截图20170608135118.png](http://upload-images.jianshu.io/upload_images/1909602-9b1238722c96a596.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) 
     
