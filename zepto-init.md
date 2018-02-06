@@ -51,68 +51,68 @@ else if (typeof selector == 'string') {
 
 		* (2) `zepto.fragment(selector, RegExp.$1, context)`  
 
-		*  `RegExp.$1`  
+			*  `RegExp.$1`  
 		
-     		`RegExp.$1`为`RegExp`的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串;  
+     			`RegExp.$1`为`RegExp`的一个属性,指的是与正则表达式匹配的第一个 子匹配(以括号为标志)字符串;  
             
-     	例子:  
+     		例子:  
 
-        ```javascript
-            var r= /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
-            r.exec('1985-10-15');
-            s1=RegExp.$1;
-            s2=RegExp.$2;
-            s3=RegExp.$3;
-            alert(s1+" "+s2+" "+s3)//结果为1985 10 15
-        ```
-		* zepto.fragment()函数
+            ```javascript
+                var r= /^(\d{4})-(\d{1,2})-(\d{1,2})$/;
+                r.exec('1985-10-15');
+                s1=RegExp.$1;
+                s2=RegExp.$2;
+                s3=RegExp.$3;
+                alert(s1+" "+s2+" "+s3)//结果为1985 10 15
+            ```
+            * zepto.fragment()函数
 
-        ```javascript
-        //对应上面的代码,这里第一个参数是selector,就是我们在写代码时的$('xxx')中的xxx,
-        //name为RegExp.$1,即正则匹配的第一个()里的东西,就是标签元素,例如 div p  h1等
-        zepto.fragment = function(html, name, properties) {
-              var dom, nodes, container
-              // singleTagRE仍为之前定义的变量
-              //singleTagRE = /^<(\w+)\s*\/?>(?:<\/\1>|)$/, 匹配值如下截图
-              //如html传入值为<p></p>,匹配singleTagRE,则创建<p></p>,并调用$('<p></p>')
-              if (singleTagRE.test(html)) dom = $(document.createElement(RegExp.$1))
-              //如果不匹配
-              if (!dom) {
-                //这是一段修复代码,将<div/>之类的不正常的代码修复成<div></div>;
-                //具体的下面再讲解
-                if (html.replace) html = html.replace(tagExpanderRE, "<$1></$2>")
-                //如果没有标签名,,给他一个标签,fragmentRE = /^\s*<(\w+|!)[^>]*>/,
-                if (name === undefined) name = fragmentRE.test(html) && RegExp.$1
-                //containers = {tr': document.createElement('tbody'),tbody': table, 'thead': table, 'tfoot': table,td': tableRow, 'th': tableRow,'*': document.createElement('div')},
-                //如果name值不在container范围内,则标签名为div
-                if (!(name in containers)) name = '*'
-                //创建容器
-                container = containers[name]
-                //把html片段放入到容器中
-                container.innerHTML = '' + html
-                //这里调用了$.each();一会再详细讲解,这里是涉及到哪个函数我就去解析哪个函数
-                //emptyArray = [], slice = emptyArray.slice,
-                //所以这里的slice.call即为Array.prototype.slice.call(),能将具有length属性的对象转成数组;
-                dom = $.each(slice.call(container.childNodes), function(){
-                //删除
-                  container.removeChild(this)
-                })
-              }
-              //如果properties为对象
-              if (isPlainObject(properties)) {
-              //$(dom)将dom转化成zepto对象；是为了方便调用其他方法；
-                nodes = $(dom)
-                $.each(properties, function(key, value) {
-                //methodAttributes = ['val', 'css', 'html', 'text', 'data', 'width', 'height', 'offset'],
-                //如果设置的key在methodAttributes内，则直接调用zepto上的方法；
-                  if (methodAttributes.indexOf(key) > -1) nodes[key](value)
-                  else nodes.attr(key, value)
-                })
-              }
-              //<p><span></span></p>返回[p,span]
-              return dom
-    }
-    ```  
+            ```javascript
+            //对应上面的代码,这里第一个参数是selector,就是我们在写代码时的$('xxx')中的xxx,
+            //name为RegExp.$1,即正则匹配的第一个()里的东西,就是标签元素,例如 div p  h1等
+            zepto.fragment = function(html, name, properties) {
+                  var dom, nodes, container
+                  // singleTagRE仍为之前定义的变量
+                  //singleTagRE = /^<(\w+)\s*\/?>(?:<\/\1>|)$/, 匹配值如下截图
+                  //如html传入值为<p></p>,匹配singleTagRE,则创建<p></p>,并调用$('<p></p>')
+                  if (singleTagRE.test(html)) dom = $(document.createElement(RegExp.$1))
+                  //如果不匹配
+                  if (!dom) {
+                    //这是一段修复代码,将<div/>之类的不正常的代码修复成<div></div>;
+                    //具体的下面再讲解
+                    if (html.replace) html = html.replace(tagExpanderRE, "<$1></$2>")
+                    //如果没有标签名,,给他一个标签,fragmentRE = /^\s*<(\w+|!)[^>]*>/,
+                    if (name === undefined) name = fragmentRE.test(html) && RegExp.$1
+                    //containers = {tr': document.createElement('tbody'),tbody': table, 'thead': table, 'tfoot': table,td': tableRow, 'th': tableRow,'*': document.createElement('div')},
+                    //如果name值不在container范围内,则标签名为div
+                    if (!(name in containers)) name = '*'
+                    //创建容器
+                    container = containers[name]
+                    //把html片段放入到容器中
+                    container.innerHTML = '' + html
+                    //这里调用了$.each();一会再详细讲解,这里是涉及到哪个函数我就去解析哪个函数
+                    //emptyArray = [], slice = emptyArray.slice,
+                    //所以这里的slice.call即为Array.prototype.slice.call(),能将具有length属性的对象转成数组;
+                    dom = $.each(slice.call(container.childNodes), function(){
+                    //删除
+                      container.removeChild(this)
+                    })
+                  }
+                  //如果properties为对象
+                  if (isPlainObject(properties)) {
+                  //$(dom)将dom转化成zepto对象；是为了方便调用其他方法；
+                    nodes = $(dom)
+                    $.each(properties, function(key, value) {
+                    //methodAttributes = ['val', 'css', 'html', 'text', 'data', 'width', 'height', 'offset'],
+                    //如果设置的key在methodAttributes内，则直接调用zepto上的方法；
+                      if (methodAttributes.indexOf(key) > -1) nodes[key](value)
+                      else nodes.attr(key, value)
+                    })
+                  }
+                  //<p><span></span></p>返回[p,span]
+                  return dom
+        }
+                ```  
 
  以上代码出现了singleTagRE;这里推荐一个正则查询工具:[http://regexpal.isbadguy.com/](http://regexpal.isbadguy.com)
     *   ######  singleTagRE		
