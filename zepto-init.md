@@ -26,7 +26,7 @@
 ![QQ截图20170608110900.png](http://upload-images.jianshu.io/upload_images/1909602-a7394f13b43e4fb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 2.  当selector为字符串的时候,又分为三种情况;
-	同样的,我们先看看这句话的代码
+同样的,我们先看看这句话的代码
     
 ```javascript
 else if (typeof selector == 'string') {
@@ -40,7 +40,7 @@ else if (typeof selector == 'string') {
     ```
 这里有两个知识点:  
 
-	*  (1) `fragmentRE.test(selector)`  
+		*  (1) `fragmentRE.test(selector)`  
 
 		这里的fragmentRE是Zepto函数在之前定义的一段正则;  
 
@@ -49,7 +49,7 @@ else if (typeof selector == 'string') {
         fragmentRE = /^\s*<(\w+|!)[^>]*>/,
         ```
 
-	* (2) `zepto.fragment(selector, RegExp.$1, context)`  
+		* (2) `zepto.fragment(selector, RegExp.$1, context)`  
 
 		*  `RegExp.$1`  
 		
@@ -115,14 +115,11 @@ else if (typeof selector == 'string') {
     ```  
 
  以上代码出现了singleTagRE;这里推荐一个正则查询工具:[http://regexpal.isbadguy.com/](http://regexpal.isbadguy.com)
-    *  singleTagRE		
-    
+    *   ######  singleTagRE		
     ![QQ截图20170608135118.png](http://upload-images.jianshu.io/upload_images/1909602-9b1238722c96a596.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-    * tagExpanderRE  
-    
+    * ###### tagExpanderRE  
      ![QQ截图20170608142535.png](http://upload-images.jianshu.io/upload_images/1909602-046f51adf996d191.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-    * fragmentR        
-        
+    *  ######  fragmentR  
     ![QQ截图20170608173421.png](http://upload-images.jianshu.io/upload_images/1909602-0b7fd77e150953ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 *  第二种 当context有值
