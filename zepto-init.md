@@ -111,15 +111,16 @@ else if (typeof selector == 'string') {
                   }
                   //<p><span></span></p>返回[p,span]
                   return dom
-        }
+        		}
                 ```  
 
- 以上代码出现了singleTagRE;这里推荐一个正则查询工具:[http://regexpal.isbadguy.com/](http://regexpal.isbadguy.com)
-    *   ######  singleTagRE		
-    ![QQ截图20170608135118.png](http://upload-images.jianshu.io/upload_images/1909602-9b1238722c96a596.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-    * ###### tagExpanderRE  
-     ![QQ截图20170608142535.png](http://upload-images.jianshu.io/upload_images/1909602-046f51adf996d191.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-    *  ######  fragmentR  
+    		*   ######  singleTagRE		
+    ![QQ截图20170608135118.png](http://upload-images.jianshu.io/upload_images/1909602-9b1238722c96a596.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) 
+    
+    		* ###### tagExpanderRE  
+     ![QQ截图20170608142535.png](http://upload-images.jianshu.io/upload_images/1909602-046f51adf996d191.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
+     
+    		*  ######  fragmentR  
     ![QQ截图20170608173421.png](http://upload-images.jianshu.io/upload_images/1909602-0b7fd77e150953ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 *  第二种 当context有值
