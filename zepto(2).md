@@ -1,5 +1,5 @@
 
-#### 1.  $.type $.isArray $.isFunction $.isNumeric $.isPlainObject $.isWindow
+##  1.  $.type $.isArray $.isFunction $.isNumeric $.isPlainObject $.isWindow
 *  **判断对象的方法介绍**
 在zepto源码中，使用了**Object.prototype.toString.call()**方法判断对象的类型，以下简单介绍下此方法的大致情况
 ```javascript
@@ -138,7 +138,7 @@ $.each("Boolean Number String Function Array Date RegExp Object Error".split(" "
           }
         ```
 
-#### 2. $.camelCase 
+##  2. $.camelCase 
 ```javascript
 camelize = function(str){ 
 	return str.replace(/-+(.)?/g,
@@ -158,7 +158,7 @@ $.camelCase = camelize
 
 	将str中的a替换成b;上面代码中将b用了函数返回值来表达;
 
-#### 3. $.contain
+##  3. $.contain
 ```javascript
 //为了判断某个节点是不是另一个节点的后代,浏览器引入了contains()方法;
 $.contains = document.documentElement.contains ?
@@ -175,7 +175,7 @@ $.contains = document.documentElement.contains ?
 ```
 * 检查父节点是否包含给定的dom节点，如果两者是相同的节点，则返回` false`。
 
-#### 4. $.each
+##  4. $.each
 ```javascript
 $.each = function(elements, callback){
     var i, key
@@ -192,7 +192,7 @@ $.each = function(elements, callback){
 ```
 * 遍历,将每次循环的值作为callback的上下文;如果callback返回的结果为false,遍历停止;
 
-#### 5. $.extend
+##  5. $.extend
 ```javascript
 function extend(target, source, deep) {
     for (key in source)
@@ -241,7 +241,7 @@ $.extend(target, source)//{one: "patridge", two: "turtle doves"}
 	
 * `slice.call(arguments, 1)`选取传入参数的第一个参数到最后一个参数;
 
-#### 5. $.inArray
+##  6. $.inArray
 ```javascript
 $.inArray = function(elem, array, i){
     return emptyArray.indexOf.call(array, elem, i)
@@ -256,7 +256,7 @@ $.inArray("abc",["bcd","abc","edf","aaa"],2);//=>-1
 * 返回数组中指定元素的索引值，如果没有找到该元素则返回-1。
 
 
-#### 6. $.map
+##  7. $.map
 ```javascript
 $.map = function(elements, callback){
     var value, values = [], i, key
@@ -288,19 +288,19 @@ $.map = function(elements, callback){
     这里巧妙应用了`apply`方法,`apply`方法的第一个元素会被当作`this`,第二个元素被做为传入的参数`arguments`;
     例如:`concat.apply([],[[1],[2],[3]]),`等价于`[].concat([1],[2],[3])`,输出的值为`[1,2,3]`,就实现了数组的扁平化;
 
-#### 7. $.noop
+## 8. $.noop
 ```javascript
 $.noop = function() {}
 ```
 * 引用空函数
 
-#### 8. $.parseJSON
+## 9. $.parseJSON
 ```javascript
 if (window.JSON) $.parseJSON = JSON.parse
 ```
 * 原生JSON.parse的别名；接受一个JSON字符串，返回解析后的javascript对象。
 
-#### 9. $.trim
+## 10. $.trim
 ```javascript
 $.trim = function(str) {
 	return str == null ? "" : String.prototype.trim.call(str)
