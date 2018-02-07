@@ -5,9 +5,9 @@
 zepto.Z.prototype = Z.prototype = $.fn
 ```
 
-####  一 内部函数
+##   一 内部函数
 
-####  1. zepto.match
+##  1. zepto.match
 ```javascript
   //判断一个元素是否匹配给定的选择器
 zepto.matches = function(element, selector) {
@@ -41,8 +41,8 @@ zepto.matches = function(element, selector) {
     若`element`存在,则返回非零的值,转换为布尔值为`true`
     
 
-####  二 $.fn
-####  **constructor**
+##   二 $.fn
+##   **constructor**
 `constructor: zepto.Z,`
 * 这就涉及到原型和构造函数的知识.之后会当作一个专题来记录;这里只做简单介绍;
 ```javascript
@@ -55,11 +55,11 @@ person.prototype.constructor == person //true
 ```
 由于`zepto.Z.prototype = $.fn` ;因此$.fn的构造函数即为`zepto.Z`
 
-####   forEach
+##    forEach
 `forEach: emptyArray.forEach,`
 * 之前已经说过,emptyArray为定义的一个空数组,所以这里的forEach即为Array.prototype.forEach,可以理解为数组自带的forEach方法;
 
-####   reduce,push,sort,splice,indexOf
+##    reduce,push,sort,splice,indexOf
 ```javascript
 reduce: emptyArray.reduce,
 push: emptyArray.push,
@@ -69,7 +69,7 @@ indexOf: emptyArray.indexOf,
 ```
 * 道理同上
 
-####   get
+##  get
 ```javascript
 get: function(idx){
 //如果不传参,将Z对象转为数组, slice.call()在第三篇已经提到过;数组自有的slice;
@@ -85,14 +85,14 @@ get: function(idx){
 
 
 
-####   toArray
+##  toArray
 ```javascript
 //将Z对象集合转换成数组
 toArray: function(){ return this.get() },
 ```
 * 不传参调用`get()`
 
-####    concat
+##   concat
 ```javascript
 concat: function(){
   var i, value, args = []
@@ -111,14 +111,14 @@ concat: function(){
 
 * 这个方法并没有像上面的reduce,push,sort,splice,等直接复制Array.prototype的属性,是因为调用此事件的对象并不一定为数组,如果调用的对象为`$();`则是类数组对象,而不是真正的数组,如果直接调用数组的`concat`,则会将`$();`当作数组的一个item合并起来,所以此方法需要重新封装
 
-####   slice
+##  slice
 ```javascript
 slice: function(){
 //同上,将this强制绑定到调用的对象身上;
   return $(slice.apply(this, arguments))
 },
 ```
-####   ready
+##  ready
 ```javascript
 ready: function(callback){
 //判断dom是否ready,如果已经ready,直接执行函数
@@ -136,7 +136,7 @@ ready: function(callback){
 	*  interactive - 已加载，文档与用户可以开始交互 ---仅DOM加载完成，不包括样式表，图片，flash,触发DOMContentLoaded事件
 	*  complete - 载入完成 ---页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了,开始触发load事件
 
-####   size
+##   size
 ```javascript
 size: function() {
   return this.length
@@ -144,7 +144,7 @@ size: function() {
 ```
 * 返回所选集合的length属性的值;
 
-####   each
+##   each
 ```javascript
 each: function(callback){
   emptyArray.every.call(this, function(el, idx){
@@ -156,7 +156,7 @@ each: function(callback){
 ```
 * 方法内部调用了`every`,当`callback`的值返回`false`的时候就会中止循环;
 
-####   eq
+##   eq
 ```javascript
 eq: function(idx){
   return idx === -1 ? this.slice(idx) : this.slice(idx, + idx + 1)
@@ -164,7 +164,7 @@ eq: function(idx){
 ```
 * 当idx为-1的时候.取最后一个;
 
-####   first
+##   first
 ```javascript
 first: function(){
   var el = this[0]
@@ -174,7 +174,7 @@ first: function(){
 * this[0] 取集合中的第一个值;
 * `return el && !isObject(el) ? el : $(el)`  如果集合中第一个数据为对象的话返回本身,否则转换成zepto对象
 
-####   last
+##  last
 ```javascript
 last: function(){
   var el = this[this.length - 1]
@@ -183,7 +183,7 @@ last: function(){
 ```
 * 同上
 
-####   add
+##   add
 ```javascript
 add: function(selector,context){
   return $(uniq(this.concat($(selector,context))))
@@ -208,14 +208,14 @@ uniq = function(array){
         ```
 * `uniq`的作用是给数组去重，如果数组中的数据在数组中的位置不等于索引值，说明这个数据在数组中出现过两次以上，我们再利用`filter`函数，只取出位置和索引值相同的那个；
 
-####   map
+## map
 ```javascript
 map: function(fn){
   return $($.map(this, function(el, i){ return fn.call(el, i, el) }))
 },
 ```
 
-####   remove
+##   remove
 ```javascript
 remove: function(){
   return this.each(function(){
@@ -226,7 +226,7 @@ remove: function(){
 ```
 * 从其父节点中删除当前集合中的元素，有效的从dom中移除。
 
-####   is
+##   is
 ```javascript
 is: function(selector){
   return this.length > 0 && zepto.matches(this[0], selector)
@@ -235,7 +235,7 @@ is: function(selector){
 * 判断当前元素集合中的第一个元素是否符css选择器。
 * `match`在开头已经写过了；
 
-####   not
+##  not
 ```javascript
 not: function(selector){
   var nodes=[]
