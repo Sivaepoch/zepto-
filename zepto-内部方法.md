@@ -7,7 +7,7 @@ zepto.Z.prototype = Z.prototype = $.fn
 
 ####  一 内部函数
 
-#### 1. zepto.match
+####  1. zepto.match
 ```javascript
   //判断一个元素是否匹配给定的选择器
 zepto.matches = function(element, selector) {
@@ -42,7 +42,7 @@ zepto.matches = function(element, selector) {
     
 
 ####  二 $.fn
-####  constructor
+####  **constructor**
 `constructor: zepto.Z,`
 * 这就涉及到原型和构造函数的知识.之后会当作一个专题来记录;这里只做简单介绍;
 ```javascript
