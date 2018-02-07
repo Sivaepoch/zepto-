@@ -119,9 +119,9 @@ else if (typeof selector == 'string') {
           * tagExpanderRE  
 
  			![QQ截图20170608142535.png](http://upload-images.jianshu.io/upload_images/1909602-046f51adf996d191.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-            * fragmentR  
+          * fragmentR  
 
-            ![QQ截图20170608173421.png](http://upload-images.jianshu.io/upload_images/1909602-0b7fd77e150953ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+          ![QQ截图20170608173421.png](http://upload-images.jianshu.io/upload_images/1909602-0b7fd77e150953ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 *  第二种 当context有值
     ```javascript
